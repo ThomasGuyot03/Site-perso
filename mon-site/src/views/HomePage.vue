@@ -46,6 +46,19 @@
         </div>
       </div>
     </section>
+      <!-- Section des services -->
+      <section class="services-section">
+      <h2>Nos Services</h2>
+      <div class="services-container">
+        <div class="service-card" v-for="(service, index) in services" :key="index">
+          <div class="icon">
+            <i :class="service.icon"></i>
+          </div>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -113,6 +126,26 @@ const cards = [
     title: "Custom Development",
     description:
       "Proficiency in custom development to build tailored web solutions for unique project needs.",
+  },
+];
+const services = [
+  {
+    icon: "fa-solid fa-chart-line",
+    title: "SEO Optimisation",
+    description:
+      "Améliorez votre visibilité sur les moteurs de recherche avec nos techniques avancées de référencement naturel.",
+  },
+  {
+    icon: "fa-solid fa-paint-brush",
+    title: "Web Design",
+    description:
+      "Des designs modernes et intuitifs qui garantissent une expérience utilisateur exceptionnelle.",
+  },
+  {
+    icon: "fa-solid fa-rocket",
+    title: "Performances Web",
+    description:
+      "Optimisation des performances pour des sites rapides et réactifs, garantissant une expérience fluide.",
   },
 ];
 </script>
@@ -271,6 +304,67 @@ const cards = [
 .card p {
   font-size: 1rem;
   color: #b0b0b0; /* Couleur du paragraphe */
+  line-height: 1.6;
+}
+.services-section {
+  margin-top: 50px;
+  padding: 20px;
+  text-align: center;
+}
+
+.services-section h2 {
+  font-size: 2.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: #ff6363;
+  margin-bottom: 30px;
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes pour afficher les services */
+  gap: 20px;
+  width: 80%;
+  margin: 0 auto; /* Centre la section horizontalement */
+}
+
+.service-card {
+  background: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure fine et transparente */
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.service-card .icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(42, 42, 42, 0.8); /* Cercle avec un fond semi-transparent */
+  margin: 0 auto 20px;
+  font-size: 2rem;
+  color: #4caf50;
+}
+
+.service-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.service-card p {
+  font-size: 1rem;
+  color: #b0b0b0;
   line-height: 1.6;
 }
 </style>
