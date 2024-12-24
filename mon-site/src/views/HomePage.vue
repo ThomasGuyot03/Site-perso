@@ -160,4 +160,7 @@ onMounted(() => {
     transform: translateX(-100%); /* S'assurer que l'animation déplace les logos jusqu'à la fin du conteneur */
   }
 }
+
+
 </style>
+

@@ -44,7 +44,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* Conteneur principal de l'application */
 #app {
   position: relative;
   min-height: 100vh;
