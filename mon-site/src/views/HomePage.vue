@@ -32,13 +32,27 @@
         </div>
       </div>
     </section>
+
+    <!-- Section compétences -->
+    <section class="skills-section">
+      <h2>Nos Compétences</h2>
+      <div class="cards-container">
+        <div class="card" v-for="(card, index) in cards" :key="index">
+          <div class="icon">
+            <i :class="card.icon"></i>
+          </div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup>
 import { reactive, onMounted } from "vue";
 
-// Technologies à afficher
+// Données des technologies (pour la bande)
 const technologies = [
   { name: "HTML", src: "https://cdn-icons-png.flaticon.com/512/732/732212.png" },
   { name: "CSS", src: "https://cdn-icons-png.flaticon.com/512/732/732190.png" },
@@ -53,7 +67,6 @@ const visibleTechnologies = reactive([]);
 
 // Fonction pour dupliquer les éléments pour un défilement continu
 const duplicateItems = () => {
-  // Répéter les éléments 10 fois
   for (let i = 0; i < 10; i++) {
     visibleTechnologies.push(...technologies);
   }
@@ -62,6 +75,46 @@ const duplicateItems = () => {
 onMounted(() => {
   duplicateItems();
 });
+
+// Données pour la section compétences
+const cards = [
+  {
+    icon: "fa-solid fa-palette",
+    title: "Web Design Principles",
+    description:
+      "Proficiency in the fundamental principles of design, such as layout, color theory, typography, and visual hierarchy.",
+  },
+  {
+    icon: "fa-solid fa-paint-brush",
+    title: "User Interface (UI) Design",
+    description:
+      "Ability to create visually appealing and intuitive user interfaces that enhance user experience and engagement.",
+  },
+  {
+    icon: "fa-solid fa-user-check",
+    title: "User Experience (UX) Design",
+    description:
+      "Understanding of user behavior and psychology to design seamless and enjoyable user experiences.",
+  },
+  {
+    icon: "fa-solid fa-sitemap",
+    title: "Wireframing and Prototyping",
+    description:
+      "Ability to create wireframes and interactive prototypes to visualize and test website layouts and functionality.",
+  },
+  {
+    icon: "fa-solid fa-mobile-alt",
+    title: "Mobile-Friendly Optimization",
+    description:
+      "Knowledge of techniques to optimize websites for mobile, ensuring a smooth user experience on smaller screens.",
+  },
+  {
+    icon: "fa-solid fa-code",
+    title: "Custom Development",
+    description:
+      "Proficiency in custom development to build tailored web solutions for unique project needs.",
+  },
+];
 </script>
 
 <style scoped>
@@ -83,7 +136,7 @@ onMounted(() => {
   font-weight: bold;
   color: #ff6363;
   margin-bottom: 20px;
-  text-align: center;
+  margin-top: 80px;
 }
 
 .intro p {
@@ -93,7 +146,6 @@ onMounted(() => {
   color: #e0e0e0;
   max-width: 800px;
   margin: 0 auto;
-  text-align: center;
 }
 
 /* Section galerie */
@@ -101,7 +153,6 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-bottom: 30px;
 }
 
 .image-gallery img {
@@ -116,8 +167,8 @@ onMounted(() => {
   border-radius: 15px;
   overflow: hidden;
   position: relative;
-  width: 50%; /* Réduit la bande à 50% de la largeur de l'écran */
-  margin: 0 auto;
+  width: 50%;
+  margin: 2% auto;
   height: 80px;
 }
 
@@ -125,8 +176,7 @@ onMounted(() => {
   display: flex;
   gap: 20px;
   position: relative;
-  animation: scroll 20s linear infinite; /* Animation de défilement */
-  width: 100%; /* Assurez-vous que la largeur est de 100% pour qu'il n'y ait pas de débordement */
+  animation: scroll 20s linear infinite;
 }
 
 .tech-item {
@@ -136,7 +186,6 @@ onMounted(() => {
   justify-content: center;
   min-width: 100px;
   text-align: center;
-  position: relative;
 }
 
 .tech-item img {
@@ -157,10 +206,71 @@ onMounted(() => {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%); /* S'assurer que l'animation déplace les logos jusqu'à la fin du conteneur */
+    transform: translateX(-100%);
   }
 }
 
+/* Section compétences */
+.skills-section {
+  margin-top: 40px;
+  padding: 20px;
+}
 
+.skills-section h2 {
+  font-size: 2.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: #ff6363;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+  gap: 20px; /* Espacement entre les cartes */
+  width: 80%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.card {
+  background: #1c1c1c; /* Couleur de fond de la carte */
+  padding: 20px;
+  border-radius: 15px; /* Bordures arrondies */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombre pour l'effet d'élévation */
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid #444; /* Légère bordure pour ressembler au design */
+}
+
+.card:hover {
+  transform: translateY(-10px); /* Soulève légèrement la carte au survol */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Accentue l'ombre */
+}
+
+.card .icon {
+  width: 80px; /* Taille de l'icône */
+  height: 80px; /* Taille de l'icône */
+  border-radius: 50%; /* Cercle parfait autour de l'icône */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2a2a2a; /* Fond de l'icône */
+  margin: 0 auto 20px; /* Centre l'icône et ajoute un espacement */
+  font-size: 2rem; /* Taille de l'icône */
+  color: #4caf50; /* Couleur de l'icône */
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff; /* Couleur du texte */
+}
+
+.card p {
+  font-size: 1rem;
+  color: #b0b0b0; /* Couleur du paragraphe */
+  line-height: 1.6;
+}
 </style>
-

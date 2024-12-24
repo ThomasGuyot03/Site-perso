@@ -31,7 +31,7 @@ const squares = Array.from({ length: 10 }, (_, id) => ({
   id,
   row: Math.floor(Math.random() * rows), // Ligne aléatoire
   col: Math.floor(Math.random() * cols), // Colonne aléatoire
-  delay: Math.random() * 2, // Délai entre 0 et 10 secondes
+  delay: Math.random() * 1, // Délai entre 0 et 10 secondes
 }));
 </script>
 
@@ -44,7 +44,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-#app {
+ #app {
   position: relative;
   min-height: 100vh;
   display: flex;
