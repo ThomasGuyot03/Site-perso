@@ -17,22 +17,21 @@
 </template>
 
 <script setup>
-// Aucun script requis ici
 </script>
 
 <style scoped>
 .navbar {
-  position: absolute; /* Barre de navigation non fixée */
-  top: 5%; /* Positionnée en haut avec un peu de marge */
-  left: 50%; /* Positionnée au milieu horizontalement */
-  transform: translate(-50%, -50%); /* Centrage parfait */
-  width: 40%; /* Garde la largeur définie */
+  position: absolute; 
+  top: 2%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  width: 40%; 
   background-color: #353535;
   color: #fff;
   padding: 1rem 2rem;
-  border-radius: 20px; /* Ajout des bords arrondis */
+  border-radius: 20px; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  z-index: 10; /* Toujours au-dessus des autres éléments */
+  z-index: 10; 
 }
 
 

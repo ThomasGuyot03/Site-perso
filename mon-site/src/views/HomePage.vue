@@ -59,6 +59,40 @@
         </div>
       </div>
     </section>
+    <!-- Nouvelle section avec un titre, texte et image -->
+    <section class="additional-section">
+  <div class="content-container">
+    <div class="text-content">
+      <h2>Sites Web Responsives</h2>
+      <p>
+        Nous concevons des sites web parfaitement adaptables à tous les appareils, qu'il s'agisse de smartphones, tablettes ou ordinateurs. Grâce à notre expertise en design responsive, nous assurons une expérience utilisateur fluide et optimisée sur tous les écrans. Votre site sera non seulement esthétique mais également performant, quelle que soit la taille de l'appareil utilisé.
+      </p>
+    </div>
+    <div class="image-content">
+      <img src="https://i.postimg.cc/C1BpxXMX/310e2245-30f2-4f46-afab-2f3989c9ca3e.png" alt="Sites Responsives" />
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <h2>Questions Fréquemment Posées</h2>
+  <div class="faq-container">
+    <div 
+      class="faq-item" 
+      v-for="(faq, index) in faqs" 
+      :key="index"
+    >
+      <div class="faq-question" @click="toggleAnswer(index)">
+        <h3>{{ faq.question }}</h3>
+        <i :class="faq.open ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"></i>
+      </div>
+      <div class="faq-answer" v-if="faq.open">
+        <p>{{ faq.answer }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
   </div>
 </template>
 
@@ -95,37 +129,37 @@ const cards = [
     icon: "fa-solid fa-palette",
     title: "Web Design Principles",
     description:
-      "Proficiency in the fundamental principles of design, such as layout, color theory, typography, and visual hierarchy.",
+    "Maîtrise des principes fondamentaux du design, tels que la mise en page, la théorie des couleurs, la typographie et la hiérarchie visuelle.",
   },
   {
     icon: "fa-solid fa-paint-brush",
     title: "User Interface (UI) Design",
     description:
-      "Ability to create visually appealing and intuitive user interfaces that enhance user experience and engagement.",
+    "Capacité à créer des interfaces utilisateurs visuellement attrayantes et intuitives qui améliorent l'expérience et l'engagement des utilisateurs.",
   },
   {
     icon: "fa-solid fa-user-check",
     title: "User Experience (UX) Design",
     description:
-      "Understanding of user behavior and psychology to design seamless and enjoyable user experiences.",
+    "Compréhension du comportement et de la psychologie des utilisateurs pour concevoir des expériences utilisateur fluides et agréables.",
   },
   {
     icon: "fa-solid fa-sitemap",
     title: "Wireframing and Prototyping",
     description:
-      "Ability to create wireframes and interactive prototypes to visualize and test website layouts and functionality.",
+    "Capacité à créer des wireframes et des prototypes interactifs pour visualiser et tester la disposition et la fonctionnalité des sites web.",
   },
   {
     icon: "fa-solid fa-mobile-alt",
     title: "Mobile-Friendly Optimization",
     description:
-      "Knowledge of techniques to optimize websites for mobile, ensuring a smooth user experience on smaller screens.",
+    "Connaissance des techniques pour optimiser les sites web pour les appareils mobiles, garantissant une expérience fluide sur les écrans plus petits.",
   },
   {
     icon: "fa-solid fa-code",
     title: "Custom Development",
     description:
-      "Proficiency in custom development to build tailored web solutions for unique project needs.",
+    "Maîtrise du développement personnalisé pour créer des solutions web sur mesure adaptées aux besoins spécifiques des projets.",
   },
 ];
 const services = [
@@ -148,6 +182,36 @@ const services = [
       "Optimisation des performances pour des sites rapides et réactifs, garantissant une expérience fluide.",
   },
 ];
+
+// Liste des FAQs
+const faqs = reactive([
+  {
+    question: "Quels services offrez-vous pour le développement web ?",
+    answer: "Nous offrons une gamme complète de services incluant la création de sites web, la conception UX/UI, le développement sur mesure et l'optimisation SEO.",
+    open: false,
+  },
+  {
+    question: "Proposez-vous des solutions pour rendre les sites web responsives ?",
+    answer: "Oui, tous nos projets sont optimisés pour fonctionner parfaitement sur tous les appareils, y compris les mobiles et tablettes.",
+    open: false,
+  },
+  {
+    question: "Combien de temps faut-il pour créer un site web ?",
+    answer: "Le délai de livraison dépend de la complexité du projet, mais cela prend généralement entre 4 et 8 semaines.",
+    open: false,
+  },
+  {
+    question: "Offrez-vous un support après la mise en ligne du site ?",
+    answer: "Oui, nous offrons un support continu pour assurer la maintenance et les mises à jour nécessaires.",
+    open: false,
+  },
+]);
+
+// Fonction pour basculer l'affichage des réponses
+const toggleAnswer = (index) => {
+  faqs[index].open = !faqs[index].open;
+};
+
 </script>
 
 <style scoped>
@@ -259,51 +323,51 @@ const services = [
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
-  gap: 20px; /* Espacement entre les cartes */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
   width: 80%;
   margin: 0 auto;
   justify-content: center;
 }
 
 .card {
-  background: #1c1c1c; /* Couleur de fond de la carte */
+  background: #1c1c1c; 
   padding: 20px;
-  border-radius: 15px; /* Bordures arrondies */
+  border-radius: 15px; 
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombre pour l'effet d'élévation */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
   transition: transform 0.3s, box-shadow 0.3s;
-  border: 1px solid #444; /* Légère bordure pour ressembler au design */
+  border: 1px solid #444; 
 }
 
 .card:hover {
-  transform: translateY(-10px); /* Soulève légèrement la carte au survol */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Accentue l'ombre */
+  transform: translateY(-10px); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
 
 .card .icon {
-  width: 80px; /* Taille de l'icône */
-  height: 80px; /* Taille de l'icône */
-  border-radius: 50%; /* Cercle parfait autour de l'icône */
+  width: 80px; 
+  height: 80px; 
+  border-radius: 50%; 
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #2a2a2a; /* Fond de l'icône */
-  margin: 0 auto 20px; /* Centre l'icône et ajoute un espacement */
-  font-size: 2rem; /* Taille de l'icône */
-  color: #4caf50; /* Couleur de l'icône */
+  background-color: #2a2a2a;
+  margin: 0 auto 20px; 
+  font-size: 2rem; 
+  color: #4caf50; 
 }
 
 .card h3 {
   margin-bottom: 10px;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #fff; /* Couleur du texte */
+  color: #fff; 
 }
 
 .card p {
   font-size: 1rem;
-  color: #b0b0b0; /* Couleur du paragraphe */
+  color: #b0b0b0; 
   line-height: 1.6;
 }
 .services-section {
@@ -321,20 +385,20 @@ const services = [
 
 .services-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colonnes pour afficher les services */
+  grid-template-columns: repeat(3, 1fr); 
   gap: 20px;
   width: 80%;
-  margin: 0 auto; /* Centre la section horizontalement */
+  margin: 0 auto; 
 }
 
 .service-card {
-  background: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  background: rgba(0, 0, 0, 0.5); 
   padding: 20px;
   border-radius: 15px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure fine et transparente */
+  border: 1px solid rgba(255, 255, 255, 0.2); 
 }
 
 .service-card:hover {
@@ -349,7 +413,7 @@ const services = [
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(42, 42, 42, 0.8); /* Cercle avec un fond semi-transparent */
+  background-color: rgba(42, 42, 42, 0.8); 
   margin: 0 auto 20px;
   font-size: 2rem;
   color: #4caf50;
@@ -363,6 +427,111 @@ const services = [
 }
 
 .service-card p {
+  font-size: 1rem;
+  color: #b0b0b0;
+  line-height: 1.6;
+}
+
+/* Nouvelle section */
+.additional-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  padding: 20px;
+  color: #fff;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.text-content {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.text-content h2 {
+  font-size: 2.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: #ff6363;
+  margin-bottom: 20px;
+}
+
+.text-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+}
+
+.image-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+
+/* Section FAQ */
+.faq-section {
+  margin-top: 50px;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.faq-section h2 {
+  font-size: 2.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: #ff6363;
+  margin-bottom: 30px;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+  background: #1c1c1c;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.faq-question i {
+  font-size: 1.2rem;
+  color: #ff6363;
+}
+
+.faq-answer {
+  margin-top: 10px;
   font-size: 1rem;
   color: #b0b0b0;
   line-height: 1.6;
