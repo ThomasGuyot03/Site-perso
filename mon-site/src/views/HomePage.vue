@@ -76,22 +76,35 @@
 
 <section class="faq-section">
   <h2>Questions Fréquemment Posées</h2>
-  <div class="faq-container">
-    <div 
-      class="faq-item" 
-      v-for="(faq, index) in faqs" 
-      :key="index"
-    >
-      <div class="faq-question" @click="toggleAnswer(index)">
-        <h3>{{ faq.question }}</h3>
-        <i :class="faq.open ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"></i>
+  <div class="faq-layout">
+    <!-- Colonne gauche : Questions -->
+    <div class="faq-left">
+      <div 
+        class="faq-item" 
+        v-for="(faq, index) in faqs" 
+        :key="index"
+      >
+        <div class="faq-question" @click="toggleAnswer(index)">
+          <h3>{{ faq.question }}</h3>
+          <i :class="faq.open ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"></i>
+        </div>
+        <div class="faq-answer" v-if="faq.open">
+          <p>{{ faq.answer }}</p>
+        </div>
       </div>
-      <div class="faq-answer" v-if="faq.open">
-        <p>{{ faq.answer }}</p>
+    </div>
+
+    <!-- Colonne droite : Posez une question -->
+    <div class="faq-right">
+      <div class="ask-box">
+        <h3>Vous avez une question ?</h3>
+        <p>Si vous ne trouvez pas votre réponse ici, posez-nous directement votre question.</p>
+        <button @click="goToAskQuestion">Poser une Question</button>
       </div>
     </div>
   </div>
 </section>
+
 
   </div>
 </template>
@@ -183,6 +196,10 @@ const services = [
   },
 ];
 
+import { useRouter } from "vue-router"; // Pour la redirection
+
+const router = useRouter();
+
 // Liste des FAQs
 const faqs = reactive([
   {
@@ -205,12 +222,24 @@ const faqs = reactive([
     answer: "Oui, nous offrons un support continu pour assurer la maintenance et les mises à jour nécessaires.",
     open: false,
   },
+  {
+  question: "Est-ce que vous proposez des services de marketing digital ?",
+  answer: "Oui, nous proposons également des services de marketing digital tels que le référencement (SEO), le marketing sur les réseaux sociaux et la publicité en ligne.",
+  open: false,
+}
+
 ]);
 
 // Fonction pour basculer l'affichage des réponses
 const toggleAnswer = (index) => {
   faqs[index].open = !faqs[index].open;
 };
+
+// Redirection vers une autre vue
+const goToAskQuestion = () => {
+  router.push('/askQuestion');
+};
+
 
 </script>
 
@@ -355,7 +384,7 @@ const toggleAnswer = (index) => {
   background-color: #2a2a2a;
   margin: 0 auto 20px; 
   font-size: 2rem; 
-  color: #4caf50; 
+  color: #ff6363; 
 }
 
 .card h3 {
@@ -416,7 +445,7 @@ const toggleAnswer = (index) => {
   background-color: rgba(42, 42, 42, 0.8); 
   margin: 0 auto 20px;
   font-size: 2rem;
-  color: #4caf50;
+  color: #ff6363;
 }
 
 .service-card h3 {
@@ -482,12 +511,9 @@ const toggleAnswer = (index) => {
   border-radius: 8px;
 }
 
-
 /* Section FAQ */
 .faq-section {
-  margin-top: 50px;
   padding: 20px;
-  text-align: center;
   color: #fff;
 }
 
@@ -496,11 +522,22 @@ const toggleAnswer = (index) => {
   font-family: 'Poppins', sans-serif;
   color: #ff6363;
   margin-bottom: 30px;
+  text-align: center;
+  text-align: left; /* Aligner le titre à gauche */
+  margin-left: 15%; /* Ajouter une marge pour éviter d'être trop collé au bord */
 }
 
-.faq-container {
-  max-width: 800px;
+.faq-layout {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+/* Colonne gauche : Questions */
+.faq-left {
+  flex: 2;
 }
 
 .faq-item {
@@ -536,4 +573,50 @@ const toggleAnswer = (index) => {
   color: #b0b0b0;
   line-height: 1.6;
 }
+
+/* Colonne droite : Posez une question */
+.faq-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ask-box {
+  background: #1c1c1c;
+  padding: 30px; /* Augmenter le padding pour plus d'espace intérieur */
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 100%; /* Ajustez la largeur selon vos besoins */
+  height: 300px; /* Augmentez la hauteur */
+}
+
+.ask-box h3 {
+  font-size: 2rem; /* Augmenter la taille du titre */
+  color: #ff6363;
+  margin-bottom: 20px;
+}
+
+.ask-box p {
+  font-size: 1.2rem; /* Augmenter la taille du texte */
+  color: #b0b0b0;
+  margin-bottom: 30px; /* Plus d'espace entre le texte et le bouton */
+}
+
+.ask-box button {
+  background-color: #ff6363;
+  color: #fff;
+  border: none;
+  padding: 15px 30px; /* Rendre le bouton plus grand */
+  border-radius: 8px; /* Arrondir un peu plus */
+  font-size: 1.2rem; /* Augmenter la taille de la police du bouton */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ask-box button:hover {
+  background-color: #e55555;
+}
+
 </style>
