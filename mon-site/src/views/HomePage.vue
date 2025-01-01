@@ -543,7 +543,7 @@ const goToAskQuestion = () => {
 .faq-item {
   margin-bottom: 20px;
   background: #1c1c1c;
-  padding: 15px;
+  padding: 25px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   cursor: pointer;

@@ -13,6 +13,8 @@
         <!-- Utilisation de router-link pour la navigation -->
         <li><router-link to="/" class="nav-item" active-class="active">Home</router-link></li>
         <li><router-link to="/askQuestion" class="nav-item" active-class="active">Contact</router-link></li>
+        <li><router-link to="/About" class="nav-item" active-class="active">A Propos</router-link></li>
+        <li><router-link to="/Blog" class="nav-item" active-class="active">Blog</router-link></li>
       </ul>
 
       <!-- Bouton principal -->
